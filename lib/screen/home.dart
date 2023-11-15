@@ -81,44 +81,81 @@ class _HomeState extends State<Home> {
           elevation: 1,
           title: Center(child: Text("Edit Profile")),
         ),
-        body: Center(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Stack(
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black, width: 2)),
-                    child: CircleAvatar(
-                      radius: 80,
-                      backgroundImage:
-                          (image != null) ? FileImage(File(image!.path)) : null,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 5,
-                    child: Container(
+              // Stack Element for profile pic
+              Center(
+                child: Stack(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Colors.green[700],
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.camera_alt,
-                          size: 25,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {
-                          showImageOption(context);
-                        },
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.black, width: 2)),
+                      child: CircleAvatar(
+                        radius: 80,
+                        backgroundImage: (image != null)
+                            ? FileImage(File(image!.path))
+                            : null,
                       ),
                     ),
-                  )
-                ],
+                    Positioned(
+                      bottom: 0,
+                      right: 5,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.green[700],
+                          shape: BoxShape.circle,
+                        ),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.camera_alt,
+                            size: 25,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {
+                            showImageOption(context);
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                child: Text("Name",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              ),
+
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15),
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      hintText: "First Name"),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 15),
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      hintText: "Last Name"),
+                ),
               ),
             ],
           ),
